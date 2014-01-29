@@ -18,10 +18,12 @@
 				<h:panelGrid  columns="2" cellpadding="4">
 				
 					<h:outputLabel id="name" value="Name" />
-					<p:inputText for="name" required="true" value="#{signUpBean.user.name}" />
+					<p:inputText for="name" required="true" value="#{signUpBean.user.name}" maxlength="60"/>
 					
 					<h:outputLabel id="email" value="E-mail" />
-					<p:inputText for="email" required="true" value="#{signUpBean.user.email}" />
+					<p:inputText for="email" required="true" value="#{signUpBean.user.email}" maxlength="60" validatorMessage="Invalid email format" requiredMessage="Please enter your email address.">
+						<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
+					</p:inputText>
 					
 					<h:outputLabel id="password" value="Password" />
 					<p:password  for="password" required="true" value="#{signUpBean.user.password}" maxlength="12" />

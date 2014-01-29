@@ -16,15 +16,15 @@ public class UserExamReadinessDAO implements Serializable {
 	 */
 	private static final long serialVersionUID = -1600331699338193260L;
 
-	public void save(UserExamReadiness uer) {
-		
-		EntityManager manager = JPAUtil.getEntityManager();
-		manager.getTransaction().begin();	
-		manager.persist(uer);	
-		manager.getTransaction().commit();	
-		manager.close();
-		
-	}
+//	public void save(UserExamReadiness uer) {
+//		
+//		EntityManager manager = JPAUtil.getEntityManager();
+//		manager.getTransaction().begin();	
+//		manager.persist(uer);	
+//		manager.getTransaction().commit();	
+//		manager.close();
+//		
+//	}
 	
 	public ArrayList<UserExamReadiness> getUers() {
 
@@ -44,14 +44,14 @@ public class UserExamReadinessDAO implements Serializable {
 		
 	}
 
-	public void update(UserExamReadiness uer) {
-		
-		EntityManager manager = JPAUtil.getEntityManager();
-		manager.getTransaction().begin();
-		manager.merge(uer);
-		manager.getTransaction().commit();
-		manager.close();
-		
-	}
+//	public void update(UserExamReadiness uer) {
+//		
+//		EntityManager manager = JPAUtil.getEntityManager();
+//		manager.getTransaction().begin();
+//		manager.merge(uer);
+//		manager.getTransaction().commit();
+//		manager.close();
+//		
+//	}
 	
 }

@@ -14,6 +14,11 @@ table, th, td {
 	
 }
 
+.title {
+	background-color: #FFA54F; 
+	color: white;
+}
+
 .topic {
 	color: white;
 	font-size: x-large;

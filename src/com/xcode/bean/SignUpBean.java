@@ -36,17 +36,13 @@ public class SignUpBean implements Serializable {
 	
 	public void signUp() {
 		
-		// Atribui o uer ao user
-		user.setUer(uer);
-		
 		// Registra a data no momento de cadastro e atribui ao user
 		Calendar dataCadastro = Calendar.getInstance();
 		Date dateSub = dataCadastro.getTime();
 		user.setSubscriptionDate(dateSub);
-		
-		uerDao.save(uer);
-		userDao.save(user);
-		
+
+		userDao.save(user, uer);
+
 	}
 	
 	public User getUser() {

@@ -3,13 +3,10 @@ package com.xcode.testes;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.persistence.EntityManager;
-
 import com.xcode.dao.UserDAO;
 import com.xcode.modelo.User;
 import com.xcode.modelo.UserExamReadiness;
 import com.xcode.modelo.topics.JavaBasics;
-import com.xcode.utils.JPAUtil;
 
 public class PersistirUsuario {
 
@@ -43,14 +40,7 @@ public class PersistirUsuario {
 		u1.setSubscriptionDate(datac);
 		u1.setUer(uer);
 		
-		EntityManager em = JPAUtil.getEntityManager();
-		
-		em.getTransaction().begin();
-		em.persist(uer);
-		em.getTransaction().commit();
-		em.close();
-		
-		dao.save(u1);
+		dao.save(u1, uer);
 		
 	}
 	
