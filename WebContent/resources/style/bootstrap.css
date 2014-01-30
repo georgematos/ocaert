@@ -5,38 +5,70 @@ body {
 	font-family: Ubuntu, Helvetica, sans-serif;
 }
 
-table, th, td {
-	border-collapse: collapse;
-	border: 1px solid black;
+table th, tr, td {
+	background-color: #FFFAFA;
+}
+
+#table_signup {
+	border: 3px solid orange;
+	border-radius: 10px;
 	padding: 5px;
-	margin-top: 20px;
-	margin-bottom: 5px;
-	
+	margin-bottom: 20px;
+}
+
+#table_signup tr td {
+	padding: 5px;
+}
+
+#table_uer {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#table_uer tr td {
+	padding: 5px;
+	margin: 0px;
+}
+
+#table_user {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding: 5px;
+}
+
+#table_user tr td{
+	padding: 5px;
 }
 
 .title {
 	background-color: #FFA54F; 
-	color: white;
+	color: black;
+	padding: 10px;
+	background: -webkit-linear-gradient(top, #FFA54F, #ffffff);
+	border-radius: 10px;
 }
 
 .topic {
-	color: white;
+	color: black;
 	font-size: x-large;
 	padding-top: 10px;
+	padding-left: 10px;
 	padding-bottom: 10px;
-	background-color: #FFA54F;
+	font-weight: bold;
+	background: -webkit-linear-gradient(top, #FFA54F, #ffffff);
+	border-radius: 10px;
 }
 
 .savebutton {
 	text-align: center;
-	background-color: #90EE90;
+	background: -webkit-linear-gradient(top, #FFA54F, #ffffff);
+	border-radius: 10px;
 }
 
-#user_data {
-	float: left;
+#rodape {
+	padding-top: 20px;
+	text-align: center;
+	background: -webkit-linear-gradient(top, #ffffff, #FFA54F);
+	border-radius: 10px;
 }
-
-#table {
-	float: right;
-}
-

@@ -26,7 +26,7 @@ public class ExamReadinessBean implements Serializable {
 	public ExamReadinessBean() {
 		user = new User();
 		uDao = new UserDAO();
-		user = uDao.getUserById(1l);
+		user = uDao.getUserById(2l);
 		uer = user.getUer();
 		user.setUer(uer);
 	}

@@ -1,47 +1,57 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	 xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-
-	<h:head>
-		<meta charset="UTF-8" />
-		<h:outputStylesheet library="style" name="bootstrap.css" />
-		<title>Sign Up</title>
-	</h:head>
 	
-	<h:body>
+	<ui:define name="titulo">OCAJP UER Sign Up</ui:define>
+
+	<ui:define name="content">
+	
 		<div align="center">
 			<h1 style="text-decoration: underline; color: gray">Sign Up OCA UER</h1>
 			<h:form>
 			<p:messages />
-				<h:panelGrid  columns="2" cellpadding="4">
+			
+				<table id="table_signup">
+					
+					<tr>
+						<td><h:outputLabel id="name" value="Name" /></td>
+						<td><p:inputText for="name" required="true" value="#{signUpBean.user.name}" maxlength="60"/></td>
+					</tr>
+					
+					<tr>
+						<td><h:outputLabel id="email" value="E-mail" /></td>
+						<td><p:inputText for="email" required="true" value="#{signUpBean.user.email}" maxlength="60" validatorMessage="Invalid email format" requiredMessage="Please enter your email address.">
+							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
+						</p:inputText></td>
+					</tr>
+					
+					<tr>
+						<td><h:outputLabel id="password" value="Password" /></td>
+						<td><p:password  for="password" required="true" value="#{signUpBean.user.password}" maxlength="12" /></td>
+					</tr>
+					
+					<tr>
+						<td><h:outputLabel id="phone" value="Phone" /></td>
+						<td><p:inputMask for="phone" mask="(99)-?9999-9999" value="#{signUpBean.user.phone}" /></td>
+					</tr>					
+					
+					<tr>
+						<td><h:outputLabel id="birthday" value="Birthday" /></td>
+						<td><p:inputMask for="birthday" required="true" mask="99/99/9999" value="#{signUpBean.user.birthday}">
+							<f:convertDateTime locale="pt_BR" timeZone="America/Fortaleza" />
+						</p:inputMask></td>
+					</tr>
+					<tr>
+						<td><p:commandButton value="Reset" type="reset" /></td>
+						<td><p:commandButton value="Submit" action="#{signUpBean.signUp}" ajax="false" /></td>
+					</tr>
+				</table>
 				
-					<h:outputLabel id="name" value="Name" />
-					<p:inputText for="name" required="true" value="#{signUpBean.user.name}" maxlength="60"/>
-					
-					<h:outputLabel id="email" value="E-mail" />
-					<p:inputText for="email" required="true" value="#{signUpBean.user.email}" maxlength="60" validatorMessage="Invalid email format" requiredMessage="Please enter your email address.">
-						<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
-					</p:inputText>
-					
-					<h:outputLabel id="password" value="Password" />
-					<p:password  for="password" required="true" value="#{signUpBean.user.password}" maxlength="12" />
-					
-					<h:outputLabel id="phone" value="Phone" />
-					<p:inputMask for="phone" mask="(99)-?9999-9999" value="#{signUpBean.user.phone}" />
-					
-					<h:outputLabel id="birthday" value="Birthday" />
-					<p:inputMask for="birthday" required="true" mask="99/99/9999" value="#{signUpBean.user.birthday}">
-						<f:convertDateTime locale="pt_BR" timeZone="America/Fortaleza" />
-					</p:inputMask>
-					
-					<p:commandButton value="Reset" type="reset" />
-					<p:commandButton value="Submit" action="#{signUpBean.signUp}" ajax="false" />
-					
-				</h:panelGrid>
 			</h:form>
 		</div>
-	</h:body>
-
-</html>
+	</ui:define>
+</ui:composition>
