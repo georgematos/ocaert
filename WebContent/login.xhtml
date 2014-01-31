@@ -1,0 +1,44 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<nav>
+			<h:form>
+				<ul>
+					<li><h:commandLink value="Home" action="index.xhtml?faces-redirect=true" /></li>
+				    <li><h:commandLink value="Sign Up" action="signup.xhtml?faces-redirect=true" /></li>
+			    </ul>
+		    </h:form>
+		</nav>
+		<div align="center">
+			<h1 class="title">Sign In OCA UER</h1>
+			<h:messages />
+	        <h:form id="login" prependId="false" onsubmit="document.getElementById('login').action='j_spring_security_check';">
+	            <table class="table_form">
+		            <tr>
+			            <td><h:outputLabel value="User" for="j_username" /></td> 
+			            <td><p:inputText id="j_username" required="true"  /></td>
+		            </tr>
+		            <tr>
+		            	<td><h:outputLabel value="Password" for="j_password" /></td>
+		            	<td><p:password id="j_password" required="true" /></td>
+		           	</tr>
+		           	<tr>
+<!-- 			            <td><input value="Reset" type="reset" /></td> -->
+<!-- 			            <td><input value="Sign In" type="submit" /></td> -->
+			            <td><p:commandButton value="Reset" type="reset" /></td>
+			            <td><p:commandButton value="Sign In" action="#{signInBean.redirectUer}" ajax="false" /></td>
+		           	</tr>
+	            </table>
+	        </h:form>
+
+		</div>
+        
+	</ui:define>
+
+</ui:composition>
+	

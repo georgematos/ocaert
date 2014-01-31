@@ -7,10 +7,11 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.xcode.dao.UserDAO;
+import com.xcode.dao.UserAppDAO;
 import com.xcode.dao.UserExamReadinessDAO;
-import com.xcode.modelo.User;
+import com.xcode.modelo.UserApp;
 import com.xcode.modelo.UserExamReadiness;
+import com.xcode.utils.Criptografia;
 
 @ManagedBean
 @ViewScoped
@@ -21,16 +22,16 @@ public class SignUpBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 5875069100814114895L;
 
-	User user;
+	UserApp user;
 	UserExamReadiness uer;
-	UserDAO userDao;
+	UserAppDAO userDao;
 	UserExamReadinessDAO uerDao;
 
 	public SignUpBean() {
 		
-		user = new User();
+		user = new UserApp();
 		uer = new UserExamReadiness();
-		userDao = new UserDAO();
+		userDao = new UserAppDAO();
 		uerDao = new UserExamReadinessDAO();
 	}
 	
@@ -40,16 +41,20 @@ public class SignUpBean implements Serializable {
 		Calendar dataCadastro = Calendar.getInstance();
 		Date dateSub = dataCadastro.getTime();
 		user.setSubscriptionDate(dateSub);
+		user.setPassword(Criptografia.md5(user.getPassword()));
+		user.setAuthority("ROLE_USER");
 
 		userDao.save(user, uer);
-
+		
+		uer = new UserExamReadiness();
+		user = new UserApp();
 	}
 	
-	public User getUser() {
+	public UserApp getUser() {
 		return user;
 	}
 	
-	public void setUser(User user) {
+	public void setUser(UserApp user) {
 		this.user = user;
 	}
 	

@@ -1,14 +1,14 @@
 package com.xcode.testes;
 
-import com.xcode.dao.UserDAO;
-import com.xcode.modelo.User;
+import com.xcode.dao.UserAppDAO;
+import com.xcode.modelo.UserApp;
 
 public class RecuperarUsuario {
 
 	public static void main(String[] args) {
 		
-		UserDAO dao = new UserDAO();
-		User u = dao.getUserById(2l);
+		UserAppDAO dao = new UserAppDAO();
+		UserApp u = dao.getUserByEmail("\'georgemattos@gmail.com\'");
 		
 		System.out.println(u.getName());
 		System.out.println(u.getUer().getRate());

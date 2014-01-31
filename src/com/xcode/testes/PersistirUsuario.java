@@ -3,8 +3,8 @@ package com.xcode.testes;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.xcode.dao.UserDAO;
-import com.xcode.modelo.User;
+import com.xcode.dao.UserAppDAO;
+import com.xcode.modelo.UserApp;
 import com.xcode.modelo.UserExamReadiness;
 import com.xcode.modelo.topics.JavaBasics;
 
@@ -12,10 +12,10 @@ public class PersistirUsuario {
 
 	public static void main(String[] args) {
 		
-		User u1 = new User();
+		UserApp u1 = new UserApp();
 		UserExamReadiness uer = new UserExamReadiness();
 		JavaBasics jb = new JavaBasics();
-		UserDAO dao = new UserDAO();
+		UserAppDAO dao = new UserAppDAO();
 		
 		jb = uer.getJb();
 		jb.setJb11(1);

@@ -1,21 +1,27 @@
-<!DOCTYPE html>
-<ui:composition template="/WEB-INF/template/Layout.xhtml"
-	 xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	
-	<ui:define name="titulo">OCAJP UER Sign Up</ui:define>
-
 	<ui:define name="content">
 	
+		<nav>
+			<h:form>
+				<ul>
+					<li><h:commandLink value="Home" action="index.xhtml?faces-redirect=true" /></li>
+				    <li><h:commandLink value="Sign In" action="login.xhtml?faces-redirect=true" /></li>
+			    </ul>
+		    </h:form>
+		</nav>
+		
 		<div align="center">
-			<h1 style="text-decoration: underline; color: gray">Sign Up OCA UER</h1>
+			<h1 class="title">Sign Up OCA UER</h1>
 			<h:form>
 			<p:messages />
 			
-				<table id="table_signup">
+				<table class="table_form">
 					
 					<tr>
 						<td><h:outputLabel id="name" value="Name" /></td>
@@ -50,8 +56,10 @@
 						<td><p:commandButton value="Submit" action="#{signUpBean.signUp}" ajax="false" /></td>
 					</tr>
 				</table>
-				
+					
 			</h:form>
 		</div>
+
 	</ui:define>
+	
 </ui:composition>

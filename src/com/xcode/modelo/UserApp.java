@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class User implements Serializable {
+public class UserApp implements Serializable {
 
 	/**
 	 * 
@@ -27,11 +27,14 @@ public class User implements Serializable {
 	@Column(length = 60)
 	private String name;
 	
-	@Column(length = 60, nullable = false)
+	@Column(length = 60, nullable = false, unique = true)
 	private String email;
 	
 	@Column(nullable = false)
 	private String password;
+	
+	@Column(length = 30)
+	private String authority;
 	
 	@Column(length = 15, nullable = true)
 	private String phone;
@@ -110,6 +113,14 @@ public class User implements Serializable {
 		this.uer = uer;
 	}
 
+	public String getAuthority() {
+		return authority;
+	}
+	
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -124,9 +135,9 @@ public class User implements Serializable {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof User))
+		if (!(obj instanceof UserApp))
 			return false;
-		User other = (User) obj;
+		UserApp other = (UserApp) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;

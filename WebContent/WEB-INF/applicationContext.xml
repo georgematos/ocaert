@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+ 
+    <!-- data source -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+    <property name="url" value="jdbc:mysql://localhost:3306/oca_uer" />
+    <property name="username" value="root" />
+    <property name="password" value="dev123" />
+    </bean>
+    
+    <sec:http auto-config="true" access-denied-page="/accessdenied.xhtml">
+		<sec:form-login login-page="/login.xhtml" authentication-failure-url="/login.xhtml?erro=true" />
+		<sec:intercept-url pattern="/uer/**" access="ROLE_USER,ROLE_ADMIN" />
+		<sec:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+<!-- 		<sec:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" /> -->
+	</sec:http>
+	
+	<sec:authentication-manager>
+    	<sec:authentication-provider>
+    		<sec:password-encoder hash="md5" />
+       		<sec:jdbc-user-service data-source-ref="dataSource"
+	            users-by-username-query="SELECT email, password, 'true' as enable FROM userapp WHERE email=?"
+	            authorities-by-username-query="SELECT email, authority FROM userapp WHERE email=?" />
+    	</sec:authentication-provider>
+	</sec:authentication-manager>
+ 
+</beans>

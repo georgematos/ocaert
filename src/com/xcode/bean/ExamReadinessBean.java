@@ -5,8 +5,12 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.xcode.dao.UserDAO;
-import com.xcode.modelo.User;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.xcode.dao.UserAppDAO;
+import com.xcode.modelo.UserApp;
 import com.xcode.modelo.UserExamReadiness;
 import com.xcode.utils.Ratings;
 
@@ -19,16 +23,29 @@ public class ExamReadinessBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 3563660237037500942L;
 	
-	private User user;
-	private UserDAO uDao;
+	private UserApp user;
+	private UserAppDAO uDao;
 	private UserExamReadiness uer;
-
+	private String email;
+	
 	public ExamReadinessBean() {
-		user = new User();
-		uDao = new UserDAO();
-		user = uDao.getUserById(2l);
+		
+		// Recuperando o email (username) do usuário logado do contexto do Spring Security
+		SecurityContext context = SecurityContextHolder.getContext();
+		Authentication auth = context.getAuthentication();		
+		email = auth.getName();
+		
+		// Instanciando Usuario e seu DAO
+		user = new UserApp();
+		uDao = new UserAppDAO();
+		
+		// Recuperando usuario do BD pelo email
+		user = uDao.getUserByEmail(email);
+		
+		// Recuperando tabela UER ao usuário
 		uer = user.getUer();
-		user.setUer(uer);
+//		user.setUer(uer);
+		
 	}
 	
 	public void update() {
@@ -38,11 +55,11 @@ public class ExamReadinessBean implements Serializable {
 		
 	}
 
-	public User getUser() {
+	public UserApp getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserApp user) {
 		this.user = user;
 	}
 	
